@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { UserSession } from "../../shared/types/user";
 
 const bodySchema = z.object({
   email: z.email(),
@@ -8,18 +9,22 @@ const bodySchema = z.object({
 export default defineEventHandler(async (event) => {
   const { email, password } = await readValidatedBody(event, bodySchema.parse);
 
-  if (email === "admin@admin.com" && password === "iamtheadmin") {
-    // set the user session in the cookie
-    // this server util is auto-imported by the auth-utils module
-    await setUserSession(event, {
-      user: {
-        name: "John Doe",
-      },
+  const config = useRuntimeConfig();
+  const apiUrl = config.public.ocraApiUrl;
+
+  try {
+    const response = await $fetch<UserSession>(`${apiUrl}/login`, {
+      method: "POST",
+      body: { email, password },
     });
-    return {};
+    await setUserSession(event, {
+      user: response,
+    });
+    return response;
+  } catch {
+    throw createError({
+      status: 401,
+      message: "Bad credentials",
+    });
   }
-  throw createError({
-    status: 401,
-    message: "Bad credentials",
-  });
 });

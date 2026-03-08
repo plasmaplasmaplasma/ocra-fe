@@ -26,4 +26,10 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "",
   },
+  runtimeConfig: {
+    public: {
+      ocraApiUrl: process.env.OCRA_API_URL || "http://localhost:8000",
+    },
+  },
+  debug: true,
 });
