@@ -23,4 +23,7 @@ export default defineNuxtConfig({
      */
     componentDir: "@/components/ui",
   },
+  colorMode: {
+    classSuffix: "",
+  },
 });
