@@ -1,75 +1,61 @@
-# Nuxt Minimal Starter
+# Ocra Frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Small project I'm doing to learn **Nuxt** and **Vue**.
+
+## About
+
+Ocra is a real estate automation platform designed to streamline the workflow of real estate agents by matching:
+
+- **Sellers** - Clients looking to sell their properties
+- **Buyers** - Clients searching for their ideal home
+- **Agent Portfolios** - Personal property listings managed by the agent
+
+## Tech Stack
+
+- **Nuxt** 
+- **TypeScript** 
+- **Tailwind CSS** 
+- **Shadcn/Nuxt** 
+- **Nuxt Auth Utils** 
+- **Zod** 
+
+## Project Structure
+
+https://nuxt.com/docs/4.x/directory-structure
 
 ## Setup
 
-Make sure to install dependencies:
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+Create a `.env` file in the root directory:
+
+```bash
+NUXT_SESSION_PASSWORD=your-session-secret-key
+OCRA_API_URL=http://localhost:8000
+```
+
+## Development
 
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Build
 
 Build the application for production:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Preview production build:
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
