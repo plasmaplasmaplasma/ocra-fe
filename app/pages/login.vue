@@ -12,11 +12,15 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-const { loggedIn, user, fetch: refreshSession } = useUserSession()
+const { loggedIn, fetch: refreshSession } = useUserSession()
+if (loggedIn.value) {
+    navigateTo('/')
+}
 const credentials = reactive({
     email: '',
     password: '',
 })
+
 async function login() {
     try {
         await $fetch('/api/login', {
@@ -45,21 +49,18 @@ async function login() {
                     </CardAction>
                 </CardHeader>
                 <CardContent>
-                    <form>
-                        <div class="grid w-full items-center gap-4">
-                            <div class="flex flex-col space-y-1.5">
-                                <Label for="email">Email</Label>
-                                <Input id="email" type="email" placeholder="m@example.com"
-                                    v-model="credentials.email" />
-                            </div>
-                            <div class="flex flex-col space-y-1.5">
-                                <div class="flex items-center">
-                                    <Label for="password">Password</Label>
-                                </div>
-                                <Input id="password" type="password" v-model="credentials.password" />
-                            </div>
+                    <div class="grid w-full items-center gap-4">
+                        <div class="flex flex-col space-y-1.5">
+                            <Label for="email">Email</Label>
+                            <Input id="email" type="email" placeholder="m@example.com" v-model="credentials.email" />
                         </div>
-                    </form>
+                        <div class="flex flex-col space-y-1.5">
+                            <div class="flex items-center">
+                                <Label for="password">Password</Label>
+                            </div>
+                            <Input id="password" type="password" v-model="credentials.password" />
+                        </div>
+                    </div>
                 </CardContent>
                 <CardFooter class="flex flex-col gap-2">
                     <Button type="submit" class="w-full">

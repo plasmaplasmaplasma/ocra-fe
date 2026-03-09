@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const apiUrl = config.public.ocraApiUrl;
 
   try {
-    const response = await $fetch<UserSession>(`${apiUrl}/login`, {
+    const response = await $fetch<UserSession>(`${apiUrl}/users/login`, {
       method: "POST",
       body: { email, password },
     });

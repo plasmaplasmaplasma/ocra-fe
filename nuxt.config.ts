@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      ocraApiUrl: process.env.OCRA_API_URL || "http://localhost:8000",
+      ocraApiUrl: process.env.OCRA_API_URL,
     },
   },
   debug: true,
