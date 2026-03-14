@@ -4,12 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: [
-    "nuxt-auth-utils",
-    "shadcn-nuxt",
-    "@nuxtjs/i18n",
-    "@nuxt/eslint",
-  ],
+  modules: ["nuxt-auth-utils", "shadcn-nuxt", "@nuxtjs/i18n", "@nuxt/eslint"],
   i18n: {
     defaultLocale: "it",
     strategy: "prefix_except_default",
@@ -26,6 +21,22 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/tailwind.css"],
   vite: {
+    optimizeDeps: {
+      include: [
+        "@iconify/vue",
+        "@vue/devtools-core",
+        "@vue/devtools-kit",
+        "lucide-vue-next",
+        "vue-sonner",
+        "@vueuse/core",
+        "clsx",
+        "tailwind-merge",
+        "class-variance-authority",
+        "reka-ui",
+        "@tanstack/vue-table",
+        "zod",
+      ],
+    },
     plugins: [tailwindcss()],
   },
   shadcn: {

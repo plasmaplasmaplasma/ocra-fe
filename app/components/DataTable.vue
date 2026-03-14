@@ -1,6 +1,6 @@
-<script setup lang="ts">
-import type { ColumnDef } from "@tanstack/vue-table";
+<script setup lang="ts" generic="TData">
 import type {
+  ColumnDef,
   ColumnFiltersState,
   ExpandedState,
   SortingState,
@@ -43,8 +43,8 @@ const { t } = useI18n();
 
 const props = withDefaults(
   defineProps<{
-    columns: ColumnDef<any, any>[];
-    data: any[];
+    columns: ColumnDef<TData>[];
+    data: TData[];
     page?: number;
     total?: number;
     perPage?: number;
@@ -108,9 +108,12 @@ const table = useVueTable({
   getFilteredRowModel: getFilteredRowModel(),
   getExpandedRowModel: getExpandedRowModel(),
   onSortingChange: (updaterOrValue) => updateValue(updaterOrValue, sorting),
-  onColumnFiltersChange: (updaterOrValue) => updateValue(updaterOrValue, columnFilters),
-  onColumnVisibilityChange: (updaterOrValue) => updateValue(updaterOrValue, columnVisibility),
-  onRowSelectionChange: (updaterOrValue) => updateValue(updaterOrValue, rowSelection),
+  onColumnFiltersChange: (updaterOrValue) =>
+    updateValue(updaterOrValue, columnFilters),
+  onColumnVisibilityChange: (updaterOrValue) =>
+    updateValue(updaterOrValue, columnVisibility),
+  onRowSelectionChange: (updaterOrValue) =>
+    updateValue(updaterOrValue, rowSelection),
   onExpandedChange: (updaterOrValue) => updateValue(updaterOrValue, expanded),
   state: {
     get sorting() {
@@ -131,7 +134,9 @@ const table = useVueTable({
   },
 });
 
-function getColumnLabel(column: ReturnType<typeof table.getAllColumns>[number]) {
+function getColumnLabel(
+  column: ReturnType<typeof table.getAllColumns>[number],
+) {
   const header = column.columnDef.header;
   if (typeof header === "string" && header.trim() !== "") {
     return header;
@@ -152,7 +157,9 @@ function getColumnLabel(column: ReturnType<typeof table.getAllColumns>[number]) 
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuCheckboxItem
-            v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
+            v-for="column in table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())"
             :key="column.id"
             class="capitalize"
             :model-value="column.getIsVisible()"
@@ -166,7 +173,10 @@ function getColumnLabel(column: ReturnType<typeof table.getAllColumns>[number]) 
 
     <Table>
       <TableHeader>
-        <TableRow v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id">
+        <TableRow
+          v-for="headerGroup in table.getHeaderGroups()"
+          :key="headerGroup.id"
+        >
           <TableHead v-for="header in headerGroup.headers" :key="header.id">
             <FlexRender
               v-if="!header.isPlaceholder"
@@ -181,7 +191,10 @@ function getColumnLabel(column: ReturnType<typeof table.getAllColumns>[number]) 
         <template v-if="table.getRowModel().rows?.length">
           <TableRow v-for="row in table.getRowModel().rows" :key="row.id">
             <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
-              <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
+              <FlexRender
+                :render="cell.column.columnDef.cell"
+                :props="cell.getContext()"
+              />
             </TableCell>
           </TableRow>
         </template>
@@ -190,19 +203,29 @@ function getColumnLabel(column: ReturnType<typeof table.getAllColumns>[number]) 
           <TableCell :colspan="columns.length" class="h-24 text-center">
             <div class="space-y-1">
               <p class="font-medium">{{ emptyTitle }}</p>
-              <p class="text-sm text-muted-foreground">{{ emptyDescription }}</p>
+              <p class="text-sm text-muted-foreground">
+                {{ emptyDescription }}
+              </p>
             </div>
           </TableCell>
         </TableRow>
       </TableBody>
     </Table>
 
-    <div class="flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+    <div
+      class="flex flex-wrap items-center justify-between gap-3 border-t pt-4"
+    >
       <p class="text-sm text-muted-foreground">
         {{ t("pagination.summary", { page, totalPages, total }) }}
       </p>
 
-      <Pagination :items-per-page="perPage" :total="total" :default-page="page" :sibling-count="0" show-edges>
+      <Pagination
+        :items-per-page="perPage"
+        :total="total"
+        :default-page="page"
+        :sibling-count="0"
+        show-edges
+      >
         <PaginationContent>
           <PaginationPrevious
             href="#"

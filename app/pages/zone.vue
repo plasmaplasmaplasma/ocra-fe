@@ -25,7 +25,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import DataTable from "@/components/common/DataTable.vue";
+import DataTable from "~/components/DataTable.vue";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
@@ -35,8 +35,11 @@ import { useOcraCrud } from "@/composables/useOcraCrud";
 import { useOcraFetch } from "@/composables/useOcraFetch";
 import type { PaginatedApiEnvelope } from "../../shared/types/api";
 import {
-  ZonaSchemaUpdate, ZonaSchemaCreate, type ZonaUpdate, type ZonaCreate,
-  type Zona
+  ZonaSchemaUpdate,
+  ZonaSchemaCreate,
+  type ZonaUpdate,
+  type ZonaCreate,
+  type Zona,
 } from "../../shared/schemas/zona";
 import { toast } from "vue-sonner";
 import { h } from "vue";
@@ -56,7 +59,9 @@ const deleteTargetId = ref<number | null>(null);
 const sheetOpen = ref(false);
 const form = reactive<Partial<ZonaUpdate | ZonaCreate>>({});
 
-const { data, pending, error, refresh } = useOcraFetch<PaginatedApiEnvelope<Zona>>("/zones/read", {
+const { data, pending, error, refresh } = useOcraFetch<
+  PaginatedApiEnvelope<Zona>
+>("/zones/read", {
   query: computed(() => ({ page: page.value })),
   immediate: false,
   watch: false,
@@ -105,7 +110,7 @@ async function submitForm() {
     resetForm();
     sheetOpen.value = false;
     await refresh();
-  } catch (err) {
+  } catch {
     formError.value = t("common.saveError");
     toast.error(formError.value);
   }
@@ -126,7 +131,7 @@ async function confirmDeleteZona() {
     hasSearched.value = true;
     await refresh();
     toast.success(t("zones.toast.deleted"));
-  } catch (err) {
+  } catch {
     toast.error(t("common.deleteError"));
   } finally {
     deleteDialogOpen.value = false;
@@ -148,31 +153,51 @@ function onPageChange(nextPage: number) {
 }
 
 function renderZonaActionsMenu(item: Zona) {
-  return h(DropdownMenu, {}, {
-    default: () => [
-      h(DropdownMenuTrigger, { asChild: true }, {
-        default: () =>
-          h(Button, { variant: "ghost", size: "icon" }, {
-            default: () => h(MoreHorizontal, { class: "size-4" }),
-          }),
-      }),
-      h(DropdownMenuContent, { align: "end" }, {
-        default: () => [
-          h(DropdownMenuItem, { onClick: () => editZona(item) }, {
-            default: () => t("common.edit"),
-          }),
-          h(
-            DropdownMenuItem,
-            {
-              class: "text-destructive focus:text-destructive",
-              onClick: () => openDeleteDialog(item.id),
-            },
-            { default: () => t("common.delete") },
-          ),
-        ],
-      }),
-    ],
-  });
+  return h(
+    DropdownMenu,
+    {},
+    {
+      default: () => [
+        h(
+          DropdownMenuTrigger,
+          { asChild: true },
+          {
+            default: () =>
+              h(
+                Button,
+                { variant: "ghost", size: "icon" },
+                {
+                  default: () => h(MoreHorizontal, { class: "size-4" }),
+                },
+              ),
+          },
+        ),
+        h(
+          DropdownMenuContent,
+          { align: "end" },
+          {
+            default: () => [
+              h(
+                DropdownMenuItem,
+                { onClick: () => editZona(item) },
+                {
+                  default: () => t("common.edit"),
+                },
+              ),
+              h(
+                DropdownMenuItem,
+                {
+                  class: "text-destructive focus:text-destructive",
+                  onClick: () => openDeleteDialog(item.id),
+                },
+                { default: () => t("common.delete") },
+              ),
+            ],
+          },
+        ),
+      ],
+    },
+  );
 }
 
 const columns = computed<ColumnDef<Zona>[]>(() => [
@@ -199,7 +224,9 @@ const columns = computed<ColumnDef<Zona>[]>(() => [
     <div class="flex items-center justify-between gap-3">
       <h1 class="text-2xl font-semibold">{{ t("zones.title") }}</h1>
       <div class="flex items-center gap-2">
-        <Button variant="outline" @click="searchZones">{{ t("common.search") }}</Button>
+        <Button variant="outline" @click="searchZones">{{
+          t("common.search")
+        }}</Button>
         <Button @click="openCreateSheet">{{ t("common.new") }}</Button>
       </div>
     </div>
@@ -209,15 +236,28 @@ const columns = computed<ColumnDef<Zona>[]>(() => [
         <CardTitle>{{ t("zones.listTitle") }}</CardTitle>
       </CardHeader>
       <CardContent class="space-y-4">
-        <p v-if="error" class="text-sm text-destructive">{{ t("common.loadError") }}</p>
-        <div v-if="pending" class="flex items-center gap-2 text-sm text-muted-foreground">
+        <p v-if="error" class="text-sm text-destructive">
+          {{ t("common.loadError") }}
+        </p>
+        <div
+          v-if="pending"
+          class="flex items-center gap-2 text-sm text-muted-foreground"
+        >
           <Spinner class="size-4" />
           <span>{{ t("common.loading") }}</span>
         </div>
 
-        <DataTable :columns="columns" :data="data?.data || []" :page="page" :total="data?.total || 0"
-          :per-page="data?.per_page || 20" :pending="pending" :empty-title="t('zones.empty.title')"
-          :empty-description="t('zones.empty.description')" @update:page="onPageChange" />
+        <DataTable
+          :columns="columns"
+          :data="data?.data || []"
+          :page="page"
+          :total="data?.total || 0"
+          :per-page="data?.per_page || 20"
+          :pending="pending"
+          :empty-title="t('zones.empty.title')"
+          :empty-description="t('zones.empty.description')"
+          @update:page="onPageChange"
+        />
       </CardContent>
     </Card>
 
@@ -225,11 +265,15 @@ const columns = computed<ColumnDef<Zona>[]>(() => [
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{{ t("common.delete") }}</AlertDialogTitle>
-          <AlertDialogDescription>{{ t("zones.confirmDelete") }}</AlertDialogDescription>
+          <AlertDialogDescription>{{
+            t("zones.confirmDelete")
+          }}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>{{ t("common.cancel") }}</AlertDialogCancel>
-          <AlertDialogAction @click="confirmDeleteZona">{{ t("common.delete") }}</AlertDialogAction>
+          <AlertDialogAction @click="confirmDeleteZona">{{
+            t("common.delete")
+          }}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -237,7 +281,9 @@ const columns = computed<ColumnDef<Zona>[]>(() => [
     <Sheet v-model:open="sheetOpen">
       <SheetContent side="right" class="w-full sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle>{{ editingId ? t("zones.editTitle") : t("zones.newTitle") }}</SheetTitle>
+          <SheetTitle>{{
+            editingId ? t("zones.editTitle") : t("zones.newTitle")
+          }}</SheetTitle>
           <SheetDescription>{{ t("zones.title") }}</SheetDescription>
         </SheetHeader>
 
@@ -247,11 +293,20 @@ const columns = computed<ColumnDef<Zona>[]>(() => [
             <Input id="nome-zona" v-model="form.nome" />
           </div>
 
-          <p v-if="formError" class="text-sm text-destructive">{{ formError }}</p>
+          <p v-if="formError" class="text-sm text-destructive">
+            {{ formError }}
+          </p>
 
           <SheetFooter class="px-0">
-            <Button type="submit">{{ editingId ? t("common.update") : t("common.create") }}</Button>
-            <Button type="button" variant="outline" @click="sheetOpen = false">{{ t("common.cancel") }}</Button>
+            <Button type="submit">{{
+              editingId ? t("common.update") : t("common.create")
+            }}</Button>
+            <Button
+              type="button"
+              variant="outline"
+              @click="sheetOpen = false"
+              >{{ t("common.cancel") }}</Button
+            >
           </SheetFooter>
         </form>
       </SheetContent>
