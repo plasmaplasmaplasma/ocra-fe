@@ -1,0 +1,228 @@
+{
+  "app": {
+    "name": "OCRA",
+    "subtitle": "Gestionale immobiliare",
+    "panelTitle": "Pannello OCRA"
+  },
+  "nav": {
+    "navigation": "Navigazione",
+    "home": "Home",
+    "clients": "Clienti",
+    "zones": "Zone",
+    "houses": "Case",
+    "portfolio": "Portfolio",
+    "search": "Ricerca",
+    "logout": "Logout"
+  },
+  "language": {
+    "toggle": "Cambia lingua",
+    "italian": "Italiano",
+    "english": "Inglese"
+  },
+  "theme": {
+    "toggle": "Cambia tema",
+    "light": "Chiaro",
+    "dark": "Scuro",
+    "auto": "Automatico"
+  },
+  "auth": {
+    "login": {
+      "title": "Accedi al tuo account",
+      "description": "Inserisci la tua email per accedere al tuo account",
+      "email": "Email",
+      "emailPlaceholder": "m{'@'}esempio.com",
+      "password": "Password",
+      "submit": "Accedi",
+      "badCredentials": "Credenziali non valide"
+    }
+  },
+  "home": {
+    "welcome": "Benvenuto {name}",
+    "defaultUser": "utente",
+    "subtitle": "Seleziona una voce dal menu laterale per iniziare."
+  },
+  "sidebar": {
+    "title": "Barra laterale",
+    "mobileDescription": "Mostra la barra laterale su mobile."
+  },
+  "command": {
+    "title": "Palette comandi",
+    "description": "Cerca un comando da eseguire..."
+  },
+  "common": {
+    "all": "Tutti",
+    "allFeminine": "Tutte",
+    "none": "Nessuno",
+    "yes": "Si",
+    "no": "No",
+    "asc": "Asc",
+    "desc": "Desc",
+    "actions": "Azioni",
+    "loading": "Caricamento...",
+    "loadError": "Errore durante il caricamento.",
+    "saveError": "Errore durante il salvataggio",
+    "deleteError": "Errore durante l'eliminazione",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "update": "Aggiorna",
+    "new": "Nuovo",
+    "create": "Crea",
+    "cancel": "Annulla",
+    "ok": "OK",
+    "close": "Chiudi",
+    "toggleSidebar": "Apri o chiudi barra laterale",
+    "applyFilters": "Applica filtri",
+    "search": "Ricerca",
+    "columns": "Colonne",
+    "id": "ID",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono"
+  },
+  "pagination": {
+    "summary": "Pagina {page} di {totalPages} ({total} record)",
+    "first": "Prima",
+    "last": "Ultima",
+    "previous": "Precedente",
+    "next": "Successiva",
+    "morePages": "Altre pagine"
+  },
+  "validation": {
+    "clientsMutuallyExclusive": "Vende e Vende per acquistare sono mutualmente esclusivi"
+  },
+  "clients": {
+    "title": "Clienti",
+    "filtersTitle": "Filtri e ordinamento",
+    "newTitle": "Nuovo cliente",
+    "editTitle": "Modifica cliente",
+    "listTitle": "Lista clienti",
+    "acquista": "Acquista",
+    "vende": "Vende",
+    "vendePerAcquistare": "Vende per acquistare",
+    "zona": "Zona",
+    "sortBy": "Ordina per",
+    "sortDir": "Direzione",
+    "surname": "Cognome",
+    "phone": "Telefono",
+    "flags": "Flags",
+    "sort": {
+      "name": "Nome",
+      "surname": "Cognome",
+      "phone": "Numero di telefono",
+      "email": "Email"
+    },
+    "confirmDelete": "Confermi la cancellazione del cliente?",
+    "toast": {
+      "updated": "Cliente aggiornato",
+      "created": "Cliente creato",
+      "deleted": "Cliente eliminato"
+    },
+    "empty": {
+      "title": "Nessun cliente trovato",
+      "description": "Prova a modificare i filtri o crea un nuovo cliente."
+    }
+  },
+  "zones": {
+    "title": "Zone",
+    "newTitle": "Nuova zona",
+    "editTitle": "Modifica zona",
+    "listTitle": "Lista zone",
+    "confirmDelete": "Confermi la cancellazione della zona?",
+    "toast": {
+      "updated": "Zona aggiornata",
+      "created": "Zona creata",
+      "deleted": "Zona eliminata"
+    },
+    "empty": {
+      "title": "Nessuna zona trovata",
+      "description": "Crea una nuova zona per iniziare."
+    }
+  },
+  "houses": {
+    "portfolioTitle": "Case - Portfolio",
+    "searchTitle": "Case - Ricerca",
+    "filtersTitle": "Filtri e ordinamento",
+    "newTitle": "Nuova casa",
+    "editTitle": "Modifica casa",
+    "listTitle": "Lista case",
+    "searchFiltersTitle": "Filtri ricerca",
+    "searchNewTitle": "Nuova ricerca casa",
+    "searchEditTitle": "Modifica ricerca",
+    "searchListTitle": "Lista ricerche",
+    "confirmDeleteHouse": "Confermi la cancellazione della casa?",
+    "confirmDeleteSearch": "Confermi la cancellazione della ricerca?",
+    "notSpecified": "Non specificato",
+    "selectZone": "Seleziona zona",
+    "selectClient": "Seleziona cliente",
+    "selectHouse": "Seleziona casa",
+    "columns": {
+      "floor": "Piano",
+      "rooms": "Locali",
+      "bedrooms": "Camere",
+      "bathrooms": "Bagni",
+      "zone": "Zona",
+      "plus": "Plus",
+      "buyTime": "Tempo acquisto",
+      "budget": "Budget",
+      "mortgagePercent": "% Mutuo",
+      "liquidity": "Liquidita",
+      "client": "Cliente",
+      "house": "Casa"
+    },
+    "labels": {
+      "floor": "Piano",
+      "rooms": "Numero locali",
+      "bedrooms": "Numero camere",
+      "bathrooms": "Numero bagni",
+      "balcony": "Balcone",
+      "terrace": "Terrazzo",
+      "garden": "Giardino",
+      "zone": "Zona",
+      "sortBy": "Ordina per",
+      "sortDir": "Direzione",
+      "buyTimeFrom": "Tempo acquisto da",
+      "buyTimeTo": "Tempo acquisto a",
+      "budgetFrom": "Budget da",
+      "budgetTo": "Budget a",
+      "mortgageFrom": "% mutuo da",
+      "mortgageTo": "% mutuo a",
+      "liquidityFrom": "Liquidita da",
+      "liquidityTo": "Liquidita a",
+      "buyTime": "Tempo di acquisto",
+      "budget": "Budget",
+      "mortgage": "Percentuale mutuo",
+      "liquidity": "Liquidita",
+      "clientRequired": "Cliente *",
+      "houseRequired": "Casa *",
+      "all": "Tutti",
+      "allFeminine": "Tutte"
+    },
+    "sort": {
+      "floor": "Piano",
+      "rooms": "Locali",
+      "bedrooms": "Camere",
+      "bathrooms": "Bagni"
+    },
+    "status": {
+      "balcony": "B",
+      "terrace": "T",
+      "garden": "G"
+    },
+    "toast": {
+      "houseUpdated": "Casa aggiornata",
+      "houseCreated": "Casa creata",
+      "houseDeleted": "Casa eliminata",
+      "searchUpdated": "Ricerca aggiornata",
+      "searchCreated": "Ricerca creata",
+      "searchDeleted": "Ricerca eliminata"
+    },
+    "empty": {
+      "houseTitle": "Nessuna casa trovata",
+      "houseDescription": "Prova a cambiare filtri o crea una nuova casa.",
+      "searchTitle": "Nessuna ricerca trovata",
+      "searchDescription": "Configura filtri diversi o crea una nuova ricerca."
+    },
+    "clientFallback": "Cliente #{id}",
+    "houseLabel": "#{id} - Zona {zone} - Piano {floor}"
+  }
+}

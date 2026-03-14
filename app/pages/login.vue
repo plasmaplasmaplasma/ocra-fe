@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
 import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+import {
     Card,
     CardAction,
     CardContent,
@@ -11,26 +20,40 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import type { UserCredentials } from '../../shared/types/user'
+import { loginCredentialsSchema } from '../../shared/schemas/auth'
 
+const localePath = useLocalePath()
+const { t } = useI18n()
 const { loggedIn, fetch: refreshSession } = useUserSession()
 if (loggedIn.value) {
-    navigateTo('/')
+    navigateTo(localePath('/'))
 }
-const credentials = reactive({
+const credentials = reactive<UserCredentials>({
     email: '',
     password: '',
 })
+const loginErrorOpen = ref(false)
+const loginErrorMessage = ref('')
 
 async function login() {
+    const parsedCredentials = loginCredentialsSchema.safeParse(credentials)
+    if (!parsedCredentials.success) {
+        loginErrorMessage.value = t('auth.login.badCredentials')
+        loginErrorOpen.value = true
+        return
+    }
+
     try {
         await $fetch('/api/login', {
             method: 'POST',
-            body: credentials,
+            body: parsedCredentials.data,
         })
         await refreshSession()
-        await navigateTo('/')
+        await navigateTo(localePath('/'))
     } catch {
-        alert('Bad credentials')
+        loginErrorMessage.value = t('auth.login.badCredentials')
+        loginErrorOpen.value = true
     }
 }
 </script>
@@ -40,35 +63,49 @@ async function login() {
         <form @submit.prevent="login">
             <Card class="w-full max-w-sm">
                 <CardHeader>
-                    <CardTitle>Login to your account</CardTitle>
+                    <CardTitle>{{ t("auth.login.title") }}</CardTitle>
                     <CardDescription>
-                        Enter your email below to login to your account
+                        {{ t("auth.login.description") }}
                     </CardDescription>
-                    <CardAction>
+                    <CardAction class="flex items-center gap-2">
                         <ThemeToggle />
+                        <LanguageToggle />
                     </CardAction>
                 </CardHeader>
                 <CardContent>
                     <div class="grid w-full items-center gap-4">
                         <div class="flex flex-col space-y-1.5">
-                            <Label for="email">Email</Label>
-                            <Input id="email" type="email" placeholder="m@example.com" v-model="credentials.email" />
+                            <Label for="email">{{ t("auth.login.email") }}</Label>
+                            <Input id="email" v-model="credentials.email" type="email"
+                                :placeholder="t('auth.login.emailPlaceholder')" />
                         </div>
                         <div class="flex flex-col space-y-1.5">
                             <div class="flex items-center">
-                                <Label for="password">Password</Label>
+                                <Label for="password">{{ t("auth.login.password") }}</Label>
                             </div>
-                            <Input id="password" type="password" v-model="credentials.password" />
+                            <Input id="password" v-model="credentials.password" type="password" />
                         </div>
                     </div>
                 </CardContent>
                 <CardFooter class="flex flex-col gap-2">
                     <Button type="submit" class="w-full">
-                        Login
+                        {{ t("auth.login.submit") }}
                     </Button>
                 </CardFooter>
             </Card>
         </form>
+
+        <AlertDialog v-model:open="loginErrorOpen">
+            <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle>{{ t('auth.login.title') }}</AlertDialogTitle>
+                    <AlertDialogDescription>{{ loginErrorMessage }}</AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogAction>{{ t('common.ok') }}</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+        </AlertDialog>
 
     </div>
 </template>

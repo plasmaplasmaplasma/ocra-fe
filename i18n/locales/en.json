@@ -1,0 +1,228 @@
+{
+  "app": {
+    "name": "OCRA",
+    "subtitle": "Real estate management",
+    "panelTitle": "OCRA Dashboard"
+  },
+  "nav": {
+    "navigation": "Navigation",
+    "home": "Home",
+    "clients": "Clients",
+    "zones": "Zones",
+    "houses": "Houses",
+    "portfolio": "Portfolio",
+    "search": "Search",
+    "logout": "Logout"
+  },
+  "language": {
+    "toggle": "Change language",
+    "italian": "Italian",
+    "english": "English"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto"
+  },
+  "auth": {
+    "login": {
+      "title": "Login to your account",
+      "description": "Enter your email below to login to your account",
+      "email": "Email",
+      "emailPlaceholder": "m{'@'}example.com",
+      "password": "Password",
+      "submit": "Login",
+      "badCredentials": "Bad credentials"
+    }
+  },
+  "home": {
+    "welcome": "Welcome {name}",
+    "defaultUser": "user",
+    "subtitle": "Select an item from the sidebar to get started."
+  },
+  "sidebar": {
+    "title": "Sidebar",
+    "mobileDescription": "Displays the mobile sidebar."
+  },
+  "command": {
+    "title": "Command Palette",
+    "description": "Search for a command to run..."
+  },
+  "common": {
+    "all": "All",
+    "allFeminine": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No",
+    "asc": "Asc",
+    "desc": "Desc",
+    "actions": "Actions",
+    "loading": "Loading...",
+    "loadError": "Error while loading.",
+    "saveError": "Error while saving",
+    "deleteError": "Error while deleting",
+    "edit": "Edit",
+    "delete": "Delete",
+    "update": "Update",
+    "new": "New",
+    "create": "Create",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "close": "Close",
+    "toggleSidebar": "Toggle sidebar",
+    "applyFilters": "Apply filters",
+    "search": "Search",
+    "columns": "Columns",
+    "id": "ID",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "pagination": {
+    "summary": "Page {page} of {totalPages} ({total} records)",
+    "first": "First",
+    "last": "Last",
+    "previous": "Previous",
+    "next": "Next",
+    "morePages": "More pages"
+  },
+  "validation": {
+    "clientsMutuallyExclusive": "Selling and selling-to-buy are mutually exclusive"
+  },
+  "clients": {
+    "title": "Clients",
+    "filtersTitle": "Filters and sorting",
+    "newTitle": "New client",
+    "editTitle": "Edit client",
+    "listTitle": "Clients list",
+    "acquista": "Buying",
+    "vende": "Selling",
+    "vendePerAcquistare": "Selling to buy",
+    "zona": "Zone",
+    "sortBy": "Sort by",
+    "sortDir": "Direction",
+    "surname": "Surname",
+    "phone": "Phone",
+    "flags": "Flags",
+    "sort": {
+      "name": "Name",
+      "surname": "Surname",
+      "phone": "Phone number",
+      "email": "Email"
+    },
+    "confirmDelete": "Confirm client deletion?",
+    "toast": {
+      "updated": "Client updated",
+      "created": "Client created",
+      "deleted": "Client deleted"
+    },
+    "empty": {
+      "title": "No clients found",
+      "description": "Try changing filters or create a new client."
+    }
+  },
+  "zones": {
+    "title": "Zones",
+    "newTitle": "New zone",
+    "editTitle": "Edit zone",
+    "listTitle": "Zones list",
+    "confirmDelete": "Confirm zone deletion?",
+    "toast": {
+      "updated": "Zone updated",
+      "created": "Zone created",
+      "deleted": "Zone deleted"
+    },
+    "empty": {
+      "title": "No zones found",
+      "description": "Create a new zone to get started."
+    }
+  },
+  "houses": {
+    "portfolioTitle": "Houses - Portfolio",
+    "searchTitle": "Houses - Search",
+    "filtersTitle": "Filters and sorting",
+    "newTitle": "New house",
+    "editTitle": "Edit house",
+    "listTitle": "Houses list",
+    "searchFiltersTitle": "Search filters",
+    "searchNewTitle": "New house search",
+    "searchEditTitle": "Edit search",
+    "searchListTitle": "Search list",
+    "confirmDeleteHouse": "Confirm house deletion?",
+    "confirmDeleteSearch": "Confirm search deletion?",
+    "notSpecified": "Not specified",
+    "selectZone": "Select zone",
+    "selectClient": "Select client",
+    "selectHouse": "Select house",
+    "columns": {
+      "floor": "Floor",
+      "rooms": "Rooms",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "zone": "Zone",
+      "plus": "Plus",
+      "buyTime": "Purchase time",
+      "budget": "Budget",
+      "mortgagePercent": "% Mortgage",
+      "liquidity": "Liquidity",
+      "client": "Client",
+      "house": "House"
+    },
+    "labels": {
+      "floor": "Floor",
+      "rooms": "Rooms",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "balcony": "Balcony",
+      "terrace": "Terrace",
+      "garden": "Garden",
+      "zone": "Zone",
+      "sortBy": "Sort by",
+      "sortDir": "Direction",
+      "buyTimeFrom": "Purchase time from",
+      "buyTimeTo": "Purchase time to",
+      "budgetFrom": "Budget from",
+      "budgetTo": "Budget to",
+      "mortgageFrom": "% mortgage from",
+      "mortgageTo": "% mortgage to",
+      "liquidityFrom": "Liquidity from",
+      "liquidityTo": "Liquidity to",
+      "buyTime": "Purchase time",
+      "budget": "Budget",
+      "mortgage": "Mortgage percentage",
+      "liquidity": "Liquidity",
+      "clientRequired": "Client *",
+      "houseRequired": "House *",
+      "all": "All",
+      "allFeminine": "All"
+    },
+    "sort": {
+      "floor": "Floor",
+      "rooms": "Rooms",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms"
+    },
+    "status": {
+      "balcony": "B",
+      "terrace": "T",
+      "garden": "G"
+    },
+    "toast": {
+      "houseUpdated": "House updated",
+      "houseCreated": "House created",
+      "houseDeleted": "House deleted",
+      "searchUpdated": "Search updated",
+      "searchCreated": "Search created",
+      "searchDeleted": "Search deleted"
+    },
+    "empty": {
+      "houseTitle": "No houses found",
+      "houseDescription": "Try changing filters or create a new house.",
+      "searchTitle": "No searches found",
+      "searchDescription": "Set different filters or create a new search."
+    },
+    "clientFallback": "Client #{id}",
+    "houseLabel": "#{id} - Zone {zone} - Floor {floor}"
+  }
+}

@@ -1,21 +1,33 @@
 <script setup lang="ts">
 definePageMeta({
-    middleware: ['authenticated'],
+    middleware: ["authenticated"],
+    layout: "app-shell",
 })
 
-const { user, clear: clearSession } = useUserSession()
+const { user } = useUserSession()
+const { t } = useI18n()
 
-async function logout() {
-    await clearSession()
-    await navigateTo('/login')
-}
+const displayName = computed(() => {
+    const sessionUser = user.value as {
+        username?: string
+        email?: string
+        Username?: string
+        Email?: string
+    } | null
+
+    return sessionUser?.username || sessionUser?.Username || sessionUser?.email || sessionUser?.Email || t("home.defaultUser")
+})
 </script>
 
 <template>
-    <div>
-        <h1>Welcome {{ user?.name }}</h1>
-        <button @click="logout">
-            Logout
-        </button>
+    <div class="flex min-h-[60vh] items-center justify-center">
+        <div class="text-center">
+            <h1 class="text-4xl font-semibold tracking-tight">
+                {{ t("home.welcome", { name: displayName }) }}
+            </h1>
+            <p class="mt-3 text-muted-foreground">
+                {{ t("home.subtitle") }}
+            </p>
+    </div>
     </div>
 </template>
